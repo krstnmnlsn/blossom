@@ -12,7 +12,7 @@ namespace graph_matching {
 const int num_graphs = 8;
 string exts[num_graphs] = { "1", "0.5", "0.25", "0.1", "0.01", "0.001", "0.0001", "0.00001" };
 
-int exp_c[num_graphs] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+int exp_c[num_graphs] = { 5000, 5000, 5000, 5000, 5000, 5000, 2723, 450 };
 
 void read_graph(string ext) {
 	fstream file;
@@ -37,6 +37,7 @@ int main() {
 		graph_matching::read_graph(graph_matching::exts[i]);
 		int c = graph_matching::match();
 		assert(c == graph_matching::exp_c[i]);
+		memset(graph_matching::graph, 0, sizeof(graph_matching::graph));
 	}
 	return 0;
 }

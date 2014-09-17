@@ -36,14 +36,19 @@ inline void rand_shuffle2(RandomAccessIterator first, RandomAccessIterator last)
 // randomly permuted to avoid the worst-case behaviour of |match|.
 void gen_graph(float p) {
 	for (int i = 0; i < n; i++) graph[i].reserve(p*(n+1));
-	for (int i=0; i<n; ++i)
-		for (int j=0; j<i; ++j)
+	for (int i=0; i<n; ++i) {
+		for (int j=0; j<i; ++j) {
+			// sketchy random number generator
 			if ((rand2() % modulo) / double(modulo - 1) < p) {
-				graph[i].push_back(j); graph[j].push_back(i);
+				graph[i].push_back(j);
+				graph[j].push_back(i);
 			}
+		}
+	}
 
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; i++) {
 		rand_shuffle2(graph[i].begin(), graph[i].end());
+	}
 }
 
 void print_graph() {
@@ -62,7 +67,7 @@ void write_graph(string ext) {
 		for (int j=0; j<graph[i].size(); ++j) {
 			file << graph[i][j] << " ";
 		}
-		file << -1 << endl;
+		file << -1 << '\n';
 	}
 	file.close();
 } 
@@ -74,25 +79,32 @@ void write_graph(string ext) {
 
 // 	graph_matching::gen_graph(1);
 // 	graph_matching::write_graph("1");
+// 	memset(graph_matching::graph, 0, sizeof(graph_matching::graph));
 
 // 	graph_matching::gen_graph(0.5);
 // 	graph_matching::write_graph("0.5");
-	
+// 	memset(graph_matching::graph, 0, sizeof(graph_matching::graph));
+
 // 	graph_matching::gen_graph(0.25);
 // 	graph_matching::write_graph("0.25");
+// 	memset(graph_matching::graph, 0, sizeof(graph_matching::graph));
 	
 // 	graph_matching::gen_graph(0.1);
 // 	graph_matching::write_graph("0.1");
+// 	memset(graph_matching::graph, 0, sizeof(graph_matching::graph));
 	
 // 	graph_matching::gen_graph(0.01);
 // 	graph_matching::write_graph("0.01");
+// 	memset(graph_matching::graph, 0, sizeof(graph_matching::graph));
 
 // 	// This is about where we lose connectedness apparently
 // 	graph_matching::gen_graph(0.001);
 // 	graph_matching::write_graph("0.001");
+// 	memset(graph_matching::graph, 0, sizeof(graph_matching::graph));
 
 // 	graph_matching::gen_graph(0.0001);
 // 	graph_matching::write_graph("0.0001");
+// 	memset(graph_matching::graph, 0, sizeof(graph_matching::graph));
 
 // 	graph_matching::gen_graph(0.00001);
 // 	graph_matching::write_graph("0.00001");	

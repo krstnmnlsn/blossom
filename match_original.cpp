@@ -40,8 +40,10 @@ time_t mem_time = 0;
 
 double average_bfs_time() {
   double ave = 0;
-  for (int i=0; i<n; ++i)
+  for (int i=0; i<n; ++i) {
+    // if (bfs_time[i] != 0) cout << bfs_time[i] << endl;
     ave += bfs_time[i];
+  }
   return ave/n;
 }
 
@@ -86,6 +88,7 @@ void shrink_one_side(int x, int y, int b){
  
 // Searches for an augmenting path rooted at r via a bredth first search.
 bool BFS(int r) { 
+  mem_time = 0;
   if (graph[r].size() == 0) return false;
 
   // Set up union-find (initially, all nodes are their own representatives)
@@ -94,7 +97,7 @@ bool BFS(int r) {
   for (int i = 0; i<n; ++i) pp[i] = i;
   memset(v, -1, sizeof(v));
   memset(d, -1, sizeof(d));
-  mem_time += clock() - t;
+  mem_time = clock() - t;
 
   // Initialize values and push root onto the queue.
   d[r] = 0;
@@ -130,10 +133,10 @@ bool BFS(int r) {
  
 int match() { 
   // memset arrays, we do not count this in our total time.
-  time_t t = clock();
+  // time_t t = clock();
   memset(bfs_time, 0, sizeof(bfs_time));
   memset(m, -1, sizeof(m));
-  mem_time += clock() - t;
+  // mem_time += clock() - t;
 
   int c = 0;
   for (int i=0; i<n; ++i) 
@@ -143,7 +146,7 @@ int match() {
       // there is no augmenting path leaving i 
       // and therefore never will be (see lemma)
       else m[i] = i; 
-      bfs_time[i] = double(clock() - t2)/CLOCKS_PER_SEC;
+      bfs_time[i] = double(clock() - t2 - mem_time)/CLOCKS_PER_SEC;
     }
   return c; 
 }
