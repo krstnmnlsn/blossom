@@ -1,0 +1,52 @@
+time taken per algorithm (including memory allocation)
+
+match_original with array queue
+p 			time(s)
+1			0.241001
+0.1			0.278343
+0.01		0.284422
+0.001		0.287888
+0.0001		0.204756
+0.00001		0.040238
+
+match_original with deque
+p 			time(s)
+1			0.24458
+0.1			0.216629
+0.01		0.222145
+0.001		0.21906
+0.0001		0.158751
+0.00001		0.034285
+
+match_naive (has deque)
+p 			time(s) 
+1 			0.022727
+0.1 		0.022483
+0.01 		0.023439
+0.001 		0.030696
+0.0001 		0.049771
+0.00001 	0.003577
+
+===========================================================
+
+times without memory allocation (the calls to clock() artifically slow the time though)
+
+match_naive
+p 			time(s)
+1 			0.010881
+0.1 		0.012853
+0.01 		0.013666
+0.001 		0.016608
+0.0001  	0.008042
+0.00001 	0.00112
+
+match_original with deque
+p 			time(s)
+1 			0.010527
+0.1 		0.011081
+0.01  		0.014071
+0.001 		0.014657
+0.0001 		0.004609
+0.00001 	0.000712
+
+
