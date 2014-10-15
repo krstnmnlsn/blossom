@@ -5,6 +5,7 @@
 using namespace std;
 
 namespace graph_matching {
+// namespace match_orig {
 
 // MAXN = The maximum possible number of nodes in our graph.  
 // n = the actual number.
@@ -72,8 +73,11 @@ void path(int r, int x){
   } 
 }
  
+int blossoms = 0;
+
 // Shrinks one side of a blossom.
 void shrink_one_side(int x, int y, int b){
+  blossoms++;
   for (int i=f(x); i!=b; i=f(p[i])) {
     u(i, b);
     if (d[i]==1) { 
@@ -114,6 +118,7 @@ bool BFS(int r) {
             path(r, x);                  
             m[x] = y;                   
             m[y] = x; 
+            // cout << qb - qf << endl;
             return true;                // AUGMENTING PATH FOUND, update m and return
 
           } else {                      // if neighbour matched:
@@ -148,8 +153,10 @@ int match() {
       else m[i] = i; 
       bfs_time[i] = double(clock() - t2 - mem_time)/CLOCKS_PER_SEC;
     }
+  // cout << "the number of blossoms contracted is " << blossoms/2 << endl;
   return c; 
 }
 
+// } // match_orig
 } // graph_matching
 

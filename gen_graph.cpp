@@ -6,7 +6,7 @@
 #include <string>
 #include <fstream>
 
-#include "match_original.cpp"
+#include "match_naive.cpp"
 
 using namespace std;
 
@@ -35,11 +35,12 @@ inline void rand_shuffle2(RandomAccessIterator first, RandomAccessIterator last)
 // Populates |graph| with a randomly generated graph.  The adjacency lists are 
 // randomly permuted to avoid the worst-case behaviour of |match|.
 void gen_graph(float p) {
+	srand(clock());
 	for (int i = 0; i < n; i++) graph[i].reserve(p*(n+1));
 	for (int i=0; i<n; ++i) {
 		for (int j=0; j<i; ++j) {
 			// sketchy random number generator
-			if ((rand2() % modulo) / double(modulo - 1) < p) {
+			if ((rand() % modulo) / double(modulo - 1) < p) {
 				graph[i].push_back(j);
 				graph[j].push_back(i);
 			}
@@ -72,7 +73,28 @@ void write_graph(string ext) {
 	file.close();
 } 
 
+void read_graph(string name) {
+	fstream file;
+	file.open(name.c_str());
+
+	if (!file.is_open()) return;
+
+	int val = 0;
+	file >> n;
+	for (int i=0; i<n; ++i) {
+		while (file >> val, val != -1) {
+			graph[i].push_back(val);
+		} 
+	}
+	file.close();
+}
+
 } // graph_matching
+
+
+
+
+// =================================================================================
 
 // int main() {
 // 	graph_matching::n = 10000;
