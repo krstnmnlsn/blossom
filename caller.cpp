@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <iterator>
 
-#include "gen_graph.cpp"
+#include "count_comp.cpp"
 
 // Running this file results in a random graph being generated 
 // and |match| from match_original being run on it.  The results 
@@ -32,6 +32,7 @@ int main(int argc, char* argv[]) {
 	cout << "the maximum matching is " << c << endl;
 	time_t diff = clock() - tnow;
 	cout << "time taken, including allocation time (s): " << double(diff)/CLOCKS_PER_SEC << endl;
-	cout << "the average time spend in a BFS (s): " << graph_matching::average_bfs_time() << endl;
+	// cout << "the average time spend in a BFS (s): " << graph_matching::average_bfs_time() << endl;
+	cout << "the number of components is " << components::count_comp() << endl;
 	return 0;
 }
