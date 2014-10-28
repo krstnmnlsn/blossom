@@ -1,56 +1,61 @@
 # of blossoms contracted in the original algorithm
 
-graph generation probability		# blossoms			matching size (/5000)		ave number comp.			ave. comp. size
+graph generation probability		# blossoms			matching size (/5000)		ave number comp.			example. comp. size(s)
 
-						1			718 				5000						1 							10,000
+						1			718 				5000						1 							1 of size 10,000
 						1			3782 				5000
 						1			770 				5000
 						1			1122 				5000
 					
-					  0.1 			1667 				5000						1 							10,000
+					  0.1 			1667 				5000						1 							1 of size 10,000
 					  0.1 			3512 				5000
 					  0.1 			4625 				5000
 					  0.1 			3988 				5000
 					
-					 0.01 			2488				5000						1 							10,000
+					 0.01 			2488				5000						1 							1 of size 10,000
 					 0.01 			8634				5000
 					 0.01 			5811 				5000
 					 0.01 			2719 				5000
 
-					0.001 			8047		        4999						1.25    					8,000
+					0.001 			8047		        4999						1.25    					1 of size 10,000
 					0.001 			3829 				4999
 					0.001 			4294 				5000
 					0.001 			7359 				4999
 
-				   0.0005 			8323				4967						67 							150
-				   0.0005 			7670				4964
+					p = ln(10000)/10000 ~= 0.0009 is the threshold for connectedness 
+
+				   0.0005 			8323				4967						67 							1 of size 9933 
+				   0.0005 			7670				4964													67 of size 1
 				   0.0005 			5996				4967
 				   0.0005 			7504				4967
-
-				   0.0004 = 10,000 log(10,000) / 10,000^2 = the probability at which the expected number of edges is sufficient for connectedness
  
-				   0.0004  			6774 				4892						189.5 						53
-				   0.0004 			8480				4884
-				   0.0004 			5349				4890
+				   0.0004  			6774 				4892						189.5 						1 of size 9799
+				   0.0004 			8480				4884 													4 of size 2
+				   0.0004 			5349				4890 													193 of size 1
 				   0.0004 			8943				4891
 
-				   0.0003 			1679 				4646						544.25 						18.4
-				   0.0003 			756					4621 
-				   0.0003 			1611				4638
+				   0.0003 			1679 				4646						544.25 						1 of size 9420
+				   0.0003 			756					4621  													1 of size 5
+				   0.0003 			1611				4638 													... 485 of size 1
 				   0.0003			1025				4619
 
-				   0.0002 			1 					3930						1605.75 					6.2
-				   0.0002 			4 					3920
-				   0.0002 			3 					3954
+				   so there is still a super component here (below) why no blossoms?  super component is sparse? bipartite?
+
+				   0.0002 			1 					3930						1605.75 					1 of size 7959
+				   0.0002 			4 					3920 													1 of size 10
+				   0.0002 			3 					3954 													... 1371 of size 1
 				   0.0002 			1 					3930
 
-				   0.0001 			1  					2744						5042.75 					1.98
-				   0.0001			0 					2747
+				   super component shrinks by an order of magnitude
+				   number of odd cycles drops dramatically 
+
+				   0.0001 			1  					2744						5042.75 					1 of size 675, 121, 99,..
+				   0.0001			0 					2747													3619 of size 1
 				   0.0001 			0 					2706
 				   0.0001 			0  					2717
 
-				  0.00001 			0 					439							9483.5 						1.05
-				  0.00001 			0 					465
-				  0.00001  			0 					439
+				  0.00001 			0 					439							9483.5 						9024 of size 1
+				  0.00001 			0 					465 													420 of size 2
+				  0.00001  			0 					439 													... 2 of size 5
 				  0.00001 			0 					435
 

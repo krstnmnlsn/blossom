@@ -2,11 +2,12 @@
 #include <unistd.h>
 #include <vector>
 #include <deque>
+#include <cmath>
 
 using namespace std;
 
 namespace graph_matching {
-namespace match_orig {
+// namespace match_orig {
 
 // MAXN = The maximum possible number of nodes in our graph.  
 // n = the actual number.
@@ -148,7 +149,8 @@ int match() {
   mem_time += clock() - t0;
 
   int c = 0;
-  for (int i=0; i<n; ++i) 
+  for (int i=0; i<n; ++i) {
+    if (c == floor(n/2)) continue; 
     if (m[i] == -1) { 
       // time_t t2 = clock();
       if (BFS(i)) c++; 
@@ -157,12 +159,13 @@ int match() {
       else m[i] = i; 
       // bfs_time[i] = double(clock() - t2 - mem_time)/CLOCKS_PER_SEC;
     }
+  }
   
   cout << double(clock() - t0 - mem_time)/CLOCKS_PER_SEC << endl;
   cout << "the number of blossoms contracted is " << blossoms/2 << endl;
   return c; 
 }
 
-} // match_orig
+// } // match_orig
 } // graph_matching
 

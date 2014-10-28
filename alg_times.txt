@@ -50,3 +50,20 @@ p 			time(s)
 0.00001 	0.000712
 
 
+===========================================================
+
+times (with memory allocation) comparing odd to even components with original algorithm
+(averaged over 4 calls for each) - numbers somewhat suspect were effected by other operations of processor :/
+
+P				9,999 nodes		10,000 nodes
+1 				3.76749 		0.216147			
+0.1 			0.57122 		0.205224
+0.01 			0.25309 		0.208170
+0.001 			0.21138 		0.214734
+0.0001 			0.15119 		0.154453
+0.00001 		0.03285 		0.032658
+
+(similar results comparing 9,998 with 9,997)
+theory: a lot of time is being wasted trying to match the last node
+
+

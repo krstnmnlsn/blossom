@@ -13,6 +13,8 @@ typedef pair<int, int> pii;
 
 namespace graph_matching {
 
+namespace match_naive {
+
 // MAXN = The maximum possible number of nodes in our graph.  
 // n = the actual number.
 const int MAXN = 10000;
@@ -231,6 +233,8 @@ int match() {
   
   return c; 
 }
+
+} // match_naive
 
 } // graph_matching
 

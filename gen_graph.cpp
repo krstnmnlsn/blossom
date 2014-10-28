@@ -6,7 +6,7 @@
 #include <string>
 #include <fstream>
 
-#include "match_naive.cpp"
+#include "match_original_queued.cpp"
 
 using namespace std;
 
@@ -36,7 +36,10 @@ inline void rand_shuffle2(RandomAccessIterator first, RandomAccessIterator last)
 // randomly permuted to avoid the worst-case behaviour of |match|.
 void gen_graph(float p) {
 	srand(clock());
-	for (int i = 0; i < n; i++) graph[i].reserve(p*(n+1));
+	for (int i = 0; i < n; i++) {
+		graph[i].clear();
+		graph[i].reserve(p*(n+1));
+	}
 	for (int i=0; i<n; ++i) {
 		for (int j=0; j<i; ++j) {
 			// sketchy random number generator
@@ -81,6 +84,11 @@ void read_graph(string name) {
 
 	int val = 0;
 	file >> n;
+	for (int i = 0; i < n; i++) {
+		graph[i].clear();
+		graph[i].reserve(0.5*(n+1));
+	}
+
 	for (int i=0; i<n; ++i) {
 		while (file >> val, val != -1) {
 			graph[i].push_back(val);
