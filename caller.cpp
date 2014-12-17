@@ -12,6 +12,7 @@
 
 
 int main(int argc, char* argv[]) {
+	cout << CLOCKS_PER_SEC << endl;
 	// The edge-probability in our randomly generated graph 
 	// defaults to 1 unless an input is supplied.
 	float p = 1;
@@ -20,7 +21,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	// The default number of vertices is 10,000
-	graph_matching::n = 10000;	
+	graph_matching::n = graph_matching::MAXN;	
 
 	time_t gen_time = clock();
 	graph_matching::gen_graph(p);
@@ -28,11 +29,14 @@ int main(int argc, char* argv[]) {
 	cout << "graph gen time (s): " << double(clock()-gen_time)/CLOCKS_PER_SEC << endl;
 	
 	time_t tnow = clock();
-	int c = graph_matching::match();
+	int b;
+	int a;
+	int c = graph_matching::match(a);
 	cout << "the maximum matching is " << c << endl;
 	time_t diff = clock() - tnow;
 	cout << "time taken, including allocation time (s): " << double(diff)/CLOCKS_PER_SEC << endl;
 	// cout << "the average time spend in a BFS (s): " << graph_matching::average_bfs_time() << endl;
-	cout << "the number of components is " << components::count_comp() << endl;
+	int sup;
+	cout << "the number of components is " << components::count_comp(sup) << endl;
 	return 0;
 }

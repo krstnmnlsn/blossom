@@ -11,7 +11,7 @@ namespace graph_matching {
 
 // MAXN = The maximum possible number of nodes in our graph.  
 // n = the actual number.
-const int MAXN = 10000;
+const int MAXN = 100000;
 int n;
 
 // The blossoms are handled by a union-find object.  the array pp = parent 
@@ -93,7 +93,7 @@ void shrink_one_side(int x, int y, int b){
   }
 }
  
-// Searches for an augmenting path rooted at r via a bredth first search.
+// Searches for an augmenting path rooted at r via a breadth first search.
 bool BFS(int r) { 
   if (graph[r].size() == 0) return false;
 
@@ -140,7 +140,8 @@ bool BFS(int r) {
   return false; 
 }
  
-int match() { 
+int match(int& b) { 
+  blossoms = 0;
   q = deque<int>();
   // memset arrays, we do not count this in our total time.
   time_t t0 = clock();
@@ -161,8 +162,9 @@ int match() {
     }
   }
   
-  cout << double(clock() - t0 - mem_time)/CLOCKS_PER_SEC << endl;
-  cout << "the number of blossoms contracted is " << blossoms/2 << endl;
+  // cout << double(clock() - t0 - mem_time)/CLOCKS_PER_SEC << endl;
+  // cout << "the number of blossoms contracted is " << blossoms/2 << endl;
+  b = blossoms/2;
   return c; 
 }
 

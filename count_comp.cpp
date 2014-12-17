@@ -23,7 +23,7 @@ void dfs(int i) {
 		if (!v[graph_matching::graph[i][k]]) dfs(graph_matching::graph[i][k]);
 }
 
-int count_comp() {	
+int count_comp(int& sup) {	
 	memset(v, 0, sizeof(v));
 	int c = 0;
 	map<int, int> compsz;
@@ -34,13 +34,20 @@ int count_comp() {
 			dfs(i);
 			if (compsz.count(seen - before)) ++compsz[seen-before];
 			else compsz[seen-before] = 1;
-			++c;
+			if ((seen - before) % 2) ++c; // returns the number of odd comp
 		}
 	}
 
-	for (map<int,int>::iterator it = compsz.begin(); it != compsz.end(); ++it) {
-		cout << endl << it->second << " components of size " << it->first << endl;
-	}
+	// cout << "get number of components " << c << endl;
+	// cout << "the super component is of size " << (--compsz.end())->first << endl;
+	sup = (--compsz.end())->first;
+
+	// cout << compsz.begin()->second << " componentss of size " << compsz.begin()->first << endl;
+	// cout << (--compsz.end())->second << " components of size " << (--compsz.end())->first << endl;
+
+	// for (map<int,int>::iterator it = compsz.begin(); it != compsz.end(); ++it) {
+	// 	cout << endl << it->second << " components of size " << it->first << endl;
+	// }
 
 	return c;
 }

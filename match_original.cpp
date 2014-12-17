@@ -9,7 +9,7 @@ namespace graph_matching {
 
 // MAXN = The maximum possible number of nodes in our graph.  
 // n = the actual number.
-const int MAXN = 10000;
+const int MAXN = 9999; // 10000;
 int n;
 
 // The blossoms are handled by a union-find object.  the array pp = parent 
@@ -144,7 +144,7 @@ int match() {
   // mem_time += clock() - t;
 
   int c = 0;
-  for (int i=0; i<n; ++i) 
+  for (int i=0; i<2*(n/2); ++i) 
     if (m[i] == -1) { 
       time_t t2 = clock();
       if (BFS(i)) c++; 
