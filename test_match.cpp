@@ -17,7 +17,7 @@ int exp_c[num_graphs] = { 5000, 5000, 5000, 5000, 5000, 5000, 2723, 450 };
 } // graph_matching
 
 int main() {
-	for (int i=3; i<graph_matching::num_graphs; ++i) {
+	for (int i=1; i<graph_matching::num_graphs; ++i) {
 		graph_matching::read_graph(string("graph-").append(graph_matching::exts[i]).c_str());
 		time_t tnow = clock();
 		int c = graph_matching::match();
