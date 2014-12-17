@@ -5,7 +5,9 @@ Implementations and tests of the blossom algorithm for matching in general graph
 
 
 Algorithm (1) "The Blossom Algorithm" - match_original.cpp
+
 Algorithm (2) "The Blossom Algorithm with Queue" - match_original_queued.cpp
+
 Algorithm (3) "The Naive Algorithm" - match_naive.cpp
 
 The Erdos-Renyi random graphs were generated with gen_graph.cpp.
